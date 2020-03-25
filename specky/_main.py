@@ -9,10 +9,15 @@ from pydub import AudioSegment
 from scipy import signal
 
 
-def show(filename, min_freq=1.0e-2, window_length_s=0.05):
+def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None):
     track = AudioSegment.from_file(filename)
 
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
+
+    if channel is None:
+        channels = range(out.shape[1])
+    else:
+        channels = [channel - 1]
 
     if window_length_s is None:
         nperseg = None
@@ -22,7 +27,7 @@ def show(filename, min_freq=1.0e-2, window_length_s=0.05):
     # overlap = 0.5
     # noverlap = int(round(overlap * window_length_samples))
 
-    for k in range(out.shape[1]):
+    for i, k in enumerate(channels):
         f, t, Sxx = signal.spectrogram(
             out[:, k],
             fs=track.frame_rate,
@@ -37,13 +42,7 @@ def show(filename, min_freq=1.0e-2, window_length_s=0.05):
         smallest_positive = numpy.min(Sxx[Sxx > 0])
         Sxx[Sxx < smallest_positive] = smallest_positive
 
-        # # Which row surpasses the average first?
-        # log_Sxx = numpy.log10(Sxx)
-        # avg_log_Sxx = numpy.average(log_Sxx)
-        # count = numpy.sum(log_Sxx > avg_log_Sxx, axis=1)
-        # k = numpy.where(count > log_Sxx.shape[1] / 4)[0][-1]
-
-        plt.subplot(1, out.shape[1], k + 1)
+        plt.subplot(1, len(channels), i + 1)
         plt.pcolormesh(
             t, f, Sxx, norm=colors.LogNorm(vmin=min_freq, vmax=Sxx.max()),
         )

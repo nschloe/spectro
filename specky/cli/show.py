@@ -8,7 +8,7 @@ def show(argv=None):
     # Parse command line arguments.
     parser = _get_parser()
     args = parser.parse_args(argv)
-    main_show(args.filename)
+    main_show(args.filename, channel=args.channel)
 
 
 def _get_parser():
@@ -20,6 +20,14 @@ def _get_parser():
     )
 
     parser.add_argument("filename", type=str, help="audio file to analyze")
+
+    parser.add_argument(
+        "-c",
+        "--channel",
+        default=None,
+        type=int,
+        help="only show one particular channel (default: show all channels)",
+    )
 
     version_text = "\n".join(
         [
