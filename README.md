@@ -18,9 +18,9 @@ See `-h` for their respective command-line arguments.
 The quality of MP3 files is typically determined by their bitrate. For audio files, *128
 kbps* (kilobit per second)  is considered low quality, *320 kbps* is considered high
 quality. It is of course possible to re-encode a low-quality MP3 with a higher bitrate or even a
-WAV file. speck can help singling out those foul eggs.
+WAV file. specky can help singling out those foul eggs.
 
-Here is the `speck-show` output of a [sample
+Here is the `specky-show` output of a [sample
 file](https://nschloe.github.io/specky/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
 channel shown):
 
