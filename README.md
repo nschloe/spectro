@@ -1,91 +1,37 @@
-# pyfoobar
+# specky
 
-[![CircleCI](https://img.shields.io/circleci/project/github/nschloe/pyfoobar/master.svg?style=flat-square)](https://circleci.com/gh/nschloe/pyfoobar/tree/master)
-[![travis](https://img.shields.io/travis/nschloe/pyfoobar.svg?style=flat-square)](https://travis-ci.org/nschloe/pyfoobar)
-[![codecov](https://img.shields.io/codecov/c/github/nschloe/pyfoobar.svg?style=flat-square)](https://codecov.io/gh/nschloe/pyfoobar)
+[![gh-actions](https://img.shields.io/github/workflow/status/nschloe/specky/ci?style=flat-square)](https://github.com/nschloe/specky/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![awesome](https://img.shields.io/badge/awesome-yes-8209ba.svg?style=flat-square)](https://github.com/nschloe/pyfoobar)
-[![PyPi Version](https://img.shields.io/pypi/v/pyfoobar.svg?style=flat-square)](https://pypi.org/project/pyfoobar)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/pyfoobar.svg?logo=github&label=Stars&logoColor=white&style=flat-square)](https://github.com/nschloe/pyfoobar)
-[![PyPi downloads](https://img.shields.io/pypi/dm/pyfoobar.svg?style=flat-square)](https://pypistats.org/packages/pyfoobar)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/specky.svg?style=flat-square)](https://pypi.org/pypi/specky/)
+[![PyPi Version](https://img.shields.io/pypi/v/specky.svg?style=flat-square)](https://pypi.org/project/specky)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/specky.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/specky)
+[![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
 
-A Python project template that highlights some best practices in Python packaging. Can
-be used as a [GitHub
-template](https://github.blog/2019-06-06-generate-new-repositories-with-repository-templates/)
-for your new Python project.
-
-### Best practices
-
-* The **name** of the git repo should be the PyPi name of the package should be what you
-  you type as `import mypackagename`. That means no hyphens in package names!
-
-* Your package should be a **one-trick pony**. Nobody wants to install a huge toolbox if
-  all they need is the image converter in it.
-
-* After `import yourpackagename`, people should be able to call
-  `yourpackagename.__version__` plus some other meta data. This helps with debugging.
-
-* Choose a **license** for your code and provide a `LICENSE[.txt]` in the root level of
-  your package as well as a statement in your main README.
-  [choosealicense.com](https://choosealicense.com/) can help you make a decision.
-
-* Use **linting and formatting**, include those in your integration tests.
-    - [black](https://github.com/python/black) is a formatter that I like because you
-      cannot configure it -- black is black.
-    - Good linters are [flake8](http://flake8.pycqa.org/en/latest/) and
-      [pylint](https://www.pylint.org/).
-    - [isort](https://pypi.org/project/isort/) sorts your imports alphabetically.
-
-* Once you have tests in order, make sure they are executed with every git push. Two
-  popular **CI services** that run your tests are [travis](https://travis-ci.org/) and
-  [circleci](https://circleci.com/). This repository contains the config files for each
-  of the two.
-
-* Make sure that **nobody can push to master**. On GitHub, go to Settings -> Branches ->
-  Add rule and select _Require status checks to pass before merging_ and _Include
-  administrators_. Development happens in pull requests, this makes sure that nobody --
-  including yourself -- ever accidentally pushes something broken to master.
-
-* Use a tool for measuring **test coverage**. [codecov](https://codecov.io/) is one, and
-  the circleci config submits the data to it.
-
-* If you have CI set up, want to show test coverage, or advertise
-  the availability on PyPi, do so using a **badge** at the top of your README. Check out
-  [shields.io](https://shields.io/) for what's available.
-
-* Include [**contributing guidelines**](CONTRIBUTING.md) and a [**code of
-  conduct**](CODE_OF_CONDUCT.md) (edit to add appropriate
-  [enforcement](CODE_OF_CONDUCT.md#enforcement) contacts or [use a
-  template](https://help.github.com/en/articles/adding-a-code-of-conduct-to-your-project))
-  to help foster a community.
-
-### What you can do with this template
-
-First run
+specky is a collection of easy-to-use Python and command-line tools for analyzing audio
+files.
+```bash
+specky-show filename.mp3   # shows the wave spectrum of the audio file
+specky-check filename.mp3  # checks if the audio file is worse than it pretends to be
 ```
-find . -type f -print0 -name "*.py" -o -name Makefile -o -name "*.yml" | xargs -0 sed -i 's/pyfoobar/your-project-name/g'
-```
-and rename the folder `pyfoobar` to customize the name.
+The quality of MP3 files is typically determined by their bitrate. For audio files, *128
+kbps* (kilobit per second)  is considered low quality, *320 kbps* is considered high
+quality.
 
-There is a simple `Makefile` that can help you with certain tasks:
-  * Run `make format` to apply formatting.
-  * Run `make check` to check formatting and style.
-  * Run `make publish` to
-     - tag your project on git (`make tag`)
-     - upload your package to PyPi (`make upload`)
+It is of course possible to re-encode a low-quality MP3 with a higher bitrate or even a
+WAV file. speck can help singling out those foul eggs.
 
-    After publishing, people can install your package with
-    ```
-    pip install pyfoobar
-    ```
+Here is the `speck-show` output of a [sample
+file](https://nschloe.github.io/specky/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
+channel shown):
 
-### Testing
+<img src="https://nschloe.github.io/specky/wav.png" width="70%"> | <img src="https://nschloe.github.io/specky/320.png" width="70%"> | <img src="https://nschloe.github.io/specky/256.png" width="70%">
+:-------------------:|:------------------:|:--------------:|
+Full-quality WAV     |  320 kbps MP3      |  256 kbps MP3  |
+<img src="https://nschloe.github.io/specky/192.png" width="70%"> | <img src="https://nschloe.github.io/specky/128.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%">
+|  192 kbps MP3      |  128 kbps MP3  |  64 kbps MP3  |
+<img src="https://nschloe.github.io/specky/96.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%"> | <img src="https://nschloe.github.io/specky/32.png" width="70%">
+|  96 kbps MP3      |  64 kbps MP3  |  32 kbps MP3  |
 
-To run the pyfoobar unit tests, check out this repository and type
-```
-pytest
-```
 
 ### License
-
-pyfoobar is published under the [MIT license](https://en.wikipedia.org/wiki/MIT_License).
+specky is published under the [GPLv3+ license](https://www.gnu.org/licenses/gpl-3.0.en.html).
