@@ -8,7 +8,7 @@ def show(argv=None):
     # Parse command line arguments.
     parser = _get_parser()
     args = parser.parse_args(argv)
-    main_show(args.filename, channel=args.channel)
+    main_show(args.filename, channel=args.channel, outfile=args.outfile)
 
 
 def _get_parser():
@@ -27,6 +27,14 @@ def _get_parser():
         default=None,
         type=int,
         help="only show one particular channel (default: show all channels)",
+    )
+
+    parser.add_argument(
+        "-o",
+        "--outfile",
+        default=None,
+        type=str,
+        help="output file (default: show on screen)",
     )
 
     version_text = "\n".join(

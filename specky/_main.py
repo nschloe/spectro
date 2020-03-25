@@ -9,7 +9,7 @@ from pydub import AudioSegment
 from scipy import signal
 
 
-def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None):
+def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None, outfile=None):
     track = AudioSegment.from_file(filename)
 
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
@@ -53,7 +53,10 @@ def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None):
         plt.colorbar()
 
     plt.gcf().suptitle(f"{filename} ({track.channels} channels, {track.frame_rate} Hz)")
-    plt.show()
+    if outfile is None:
+        plt.show()
+    else:
+        plt.savefig(outfile, transparent=True, bbox_inches="tight")
 
 
 def check(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
