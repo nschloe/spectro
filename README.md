@@ -24,13 +24,13 @@ Here is the `specky-show` output of a [sample
 file](https://nschloe.github.io/specky/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
 channel shown):
 
-<img src="https://nschloe.github.io/specky/wav.png" width="70%"> | <img src="https://nschloe.github.io/specky/320.png" width="70%"> | <img src="https://nschloe.github.io/specky/256.png" width="70%">
+<img src="https://nschloe.github.io/specky/wav.png" width="100%"> | <img src="https://nschloe.github.io/specky/320.png" width="100%"> | <img src="https://nschloe.github.io/specky/256.png" width="100%">
 :-------------------:|:------------------:|:--------------:|
 Full-quality WAV     |  320 kbps MP3      |  256 kbps MP3  |
-<img src="https://nschloe.github.io/specky/192.png" width="70%"> | <img src="https://nschloe.github.io/specky/128.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%">
-|  192 kbps MP3      |  128 kbps MP3  |  64 kbps MP3  |
-<img src="https://nschloe.github.io/specky/96.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%"> | <img src="https://nschloe.github.io/specky/32.png" width="70%">
-|  96 kbps MP3      |  64 kbps MP3  |  32 kbps MP3  |
+<img src="https://nschloe.github.io/specky/192.png" width="100%"> | <img src="https://nschloe.github.io/specky/128.png" width="100%"> | <img src="https://nschloe.github.io/specky/96.png" width="100%">
+|  192 kbps MP3      |  128 kbps MP3  |  96 kbps MP3  |
+<img src="https://nschloe.github.io/specky/64.png" width="100%"> | <img src="https://nschloe.github.io/specky/64.png" width="100%"> | <img src="https://nschloe.github.io/specky/16.png" width="100%">
+|  64 kbps MP3      |  32 kbps MP3  |  16 kbps MP3  |
 
 
 ### License
