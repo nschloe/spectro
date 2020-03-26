@@ -9,7 +9,14 @@ from pydub import AudioSegment
 from scipy import signal
 
 
-def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None, outfile=None):
+def show(
+    filename,
+    min_freq=1.0e-2,
+    num_windows=None,
+    num_frequencies=None,
+    channel=None,
+    outfile=None,
+):
     track = AudioSegment.from_file(filename)
 
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
@@ -19,24 +26,27 @@ def show(filename, min_freq=1.0e-2, window_length_s=0.05, channel=None, outfile=
     else:
         channels = [channel - 1]
 
-    if window_length_s is None:
+    if num_windows is None:
         nperseg = None
     else:
-        nperseg = int(round(window_length_s * track.frame_rate))
-
-    # overlap = 0.5
-    # noverlap = int(round(overlap * window_length_samples))
+        nperseg = int(round(track.duration_seconds / num_windows * track.frame_rate))
 
     for i, k in enumerate(channels):
+        # Perhaps one can downsample this.
+        # https://stackoverflow.com/q/60866162/353337
         f, t, Sxx = signal.spectrogram(
             out[:, k],
             fs=track.frame_rate,
             scaling="spectrum",
             mode="magnitude",
-            # nperseg=window_length_samples
             nperseg=nperseg,
-            # noverlap=noverlap
         )
+
+        if num_frequencies is not None:
+            # ditch some of the frequencies
+            f_step = f.shape[0] // num_frequencies
+            f = f[::f_step]
+            Sxx = Sxx[::f_step]
 
         # Make sure all values are positive for the log scaling
         smallest_positive = numpy.min(Sxx[Sxx > 0])

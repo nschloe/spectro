@@ -8,7 +8,13 @@ def show(argv=None):
     # Parse command line arguments.
     parser = _get_parser()
     args = parser.parse_args(argv)
-    main_show(args.filename, channel=args.channel, outfile=args.outfile)
+    main_show(
+        args.filename,
+        channel=args.channel,
+        outfile=args.outfile,
+        num_windows=args.num_windows,
+        num_frequencies=args.num_frequencies,
+    )
 
 
 def _get_parser():
@@ -27,6 +33,22 @@ def _get_parser():
         default=None,
         type=int,
         help="only show one particular channel (default: show all channels)",
+    )
+
+    parser.add_argument(
+        "-w",
+        "--num-windows",
+        default=300,
+        type=int,
+        help="number of windows (x-axis resolution, default: 300)",
+    )
+
+    parser.add_argument(
+        "-f",
+        "--num-frequencies",
+        default=300,
+        type=int,
+        help="number of frequencies (y-axis resolution, default: 300)",
     )
 
     parser.add_argument(
