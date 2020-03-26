@@ -1,4 +1,7 @@
-# specky
+<p align="center">
+  <a href="https://github.com/nschloe/specky"><img alt="specky" src="https://nschloe.github.io/specky/specky-logo.svg" width="60%"></a>
+  <p align="center">Delicious audio file spectrograms.</p>
+</p>
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/specky/ci?style=flat-square)](https://github.com/nschloe/specky/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
