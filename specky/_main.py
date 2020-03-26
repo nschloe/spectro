@@ -76,7 +76,7 @@ def check(path, **kwargs):
         return
 
     assert os.path.isdir(path)
-    for filename in glob.glob(path + '/**/*.mp3', recursive=True):
+    for filename in glob.glob(path + "/**/*.mp3", recursive=True):
         _check_file(filename, **kwargs)
     return
 
@@ -139,7 +139,9 @@ def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
             expected_max_freq = val
 
         if f[k] > expected_max_freq:
-            print(f"{Fore.GREEN}{filename} seems good.{Style.RESET_ALL}")
+            print(
+                f"{Fore.GREEN}{filename} seems good [{bitrate} kbps].{Style.RESET_ALL}"
+            )
         else:
             print(
                 f"{Fore.RED}{filename} is MP3 [{bitrate} kbps], but has max frequency "
