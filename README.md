@@ -1,4 +1,7 @@
-# specky
+<p align="center">
+  <a href="https://github.com/nschloe/specky"><img alt="specky" src="https://nschloe.github.io/specky/specky-logo.svg" width="50%"></a>
+  <p align="center">Delicious audio file spectrograms.</p>
+</p>
 
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/specky/ci?style=flat-square)](https://github.com/nschloe/specky/actions?query=workflow%3Aci)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
@@ -8,10 +11,14 @@
 [![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
 
 specky is a collection of easy-to-use Python and command-line tools for analyzing audio
-files.
+files. Install from [PyPi](https://pypi.org/project/specky/) with
+```
+pip install specky
+```
+and use with
 ```bash
-specky-show filename.mp3   # shows the wave spectrum of the audio file
-specky-check filename.mp3  # checks if the audio file is worse than it pretends to be
+specky-show filename.mp3                # shows the wave spectrum of the audio file
+specky-check {dirname or filename.mp3}  # checks if the audio file is worse than it pretends to be
 ```
 See `-h` for their respective command-line arguments.
 
@@ -24,13 +31,13 @@ Here is the `specky-show` output of a [sample
 file](https://nschloe.github.io/specky/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
 channel shown):
 
-<img src="https://nschloe.github.io/specky/wav.png" width="70%"> | <img src="https://nschloe.github.io/specky/320.png" width="70%"> | <img src="https://nschloe.github.io/specky/256.png" width="70%">
+<img src="https://nschloe.github.io/specky/wav.png" width="100%"> | <img src="https://nschloe.github.io/specky/320.png" width="100%"> | <img src="https://nschloe.github.io/specky/256.png" width="100%">
 :-------------------:|:------------------:|:--------------:|
 Full-quality WAV     |  320 kbps MP3      |  256 kbps MP3  |
-<img src="https://nschloe.github.io/specky/192.png" width="70%"> | <img src="https://nschloe.github.io/specky/128.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%">
-|  192 kbps MP3      |  128 kbps MP3  |  64 kbps MP3  |
-<img src="https://nschloe.github.io/specky/96.png" width="70%"> | <img src="https://nschloe.github.io/specky/64.png" width="70%"> | <img src="https://nschloe.github.io/specky/32.png" width="70%">
-|  96 kbps MP3      |  64 kbps MP3  |  32 kbps MP3  |
+<img src="https://nschloe.github.io/specky/192.png" width="100%"> | <img src="https://nschloe.github.io/specky/128.png" width="100%"> | <img src="https://nschloe.github.io/specky/96.png" width="100%">
+|  192 kbps MP3      |  128 kbps MP3  |  96 kbps MP3  |
+<img src="https://nschloe.github.io/specky/64.png" width="100%"> | <img src="https://nschloe.github.io/specky/32.png" width="100%"> | <img src="https://nschloe.github.io/specky/16.png" width="100%">
+|  64 kbps MP3      |  32 kbps MP3  |  16 kbps MP3  |
 
 
 ### License
