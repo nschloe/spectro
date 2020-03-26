@@ -44,7 +44,7 @@ def show(
 
         if num_frequencies is not None:
             # ditch some of the frequencies
-            f_step = f.shape[0] // num_frequencies
+            f_step = -(-f.shape[0] // num_frequencies)
             f = f[::f_step]
             Sxx = Sxx[::f_step]
 
