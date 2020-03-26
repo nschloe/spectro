@@ -8,7 +8,11 @@
 [![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
 
 specky is a collection of easy-to-use Python and command-line tools for analyzing audio
-files.
+files. Install from [PyPi](https://pypi.org/project/specky/) with
+```
+pip install specky
+```
+and use with
 ```bash
 specky-show filename.mp3   # shows the wave spectrum of the audio file
 specky-check filename.mp3  # checks if the audio file is worse than it pretends to be
