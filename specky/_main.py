@@ -1,3 +1,4 @@
+import glob
 import os
 
 import matplotlib.colors as colors
@@ -69,7 +70,18 @@ def show(
         plt.savefig(outfile, transparent=True, bbox_inches="tight")
 
 
-def check(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
+def check(path, **kwargs):
+    if os.path.isfile(path):
+        _check_file(path, **kwargs)
+        return
+
+    assert os.path.isdir(path)
+    for filename in glob.glob(path + '/**/*.mp3', recursive=True):
+        _check_file(filename, **kwargs)
+    return
+
+
+def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
     track = AudioSegment.from_file(filename)
 
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)

@@ -19,7 +19,7 @@ def _get_parser():
         formatter_class=argparse.RawTextHelpFormatter,
     )
 
-    parser.add_argument("filename", type=str, help="audio file to analyze")
+    parser.add_argument("path", type=str, help="audio file or directory to analyze")
 
     version_text = "\n".join(
         [

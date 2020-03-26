@@ -17,8 +17,8 @@ pip install specky
 ```
 and use with
 ```bash
-specky-show filename.mp3   # shows the wave spectrum of the audio file
-specky-check filename.mp3  # checks if the audio file is worse than it pretends to be
+specky-show filename.mp3                # shows the wave spectrum of the audio file
+specky-check {dirname or filename.mp3}  # checks if the audio file is worse than it pretends to be
 ```
 See `-h` for their respective command-line arguments.
 
