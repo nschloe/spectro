@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/nschloe/specky"><img alt="specky" src="https://nschloe.github.io/specky/specky-logo.svg" width="60%"></a>
+  <a href="https://github.com/nschloe/specky"><img alt="specky" src="https://nschloe.github.io/specky/specky-logo.svg" width="50%"></a>
   <p align="center">Delicious audio file spectrograms.</p>
 </p>
 
