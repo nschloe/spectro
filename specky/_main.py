@@ -20,6 +20,7 @@ def show(
 ):
     track = AudioSegment.from_file(filename)
 
+    assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
     if channel is None:
@@ -84,6 +85,7 @@ def check(path, **kwargs):
 def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
     track = AudioSegment.from_file(filename)
 
+    assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
     if window_length_s is None:
@@ -92,7 +94,7 @@ def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
         nperseg = int(round(window_length_s * track.frame_rate))
 
     # Use the first channel by default
-    f, t, Sxx = signal.spectrogram(
+    f, _, Sxx = signal.spectrogram(
         out[:, channel],
         fs=track.frame_rate,
         scaling="spectrum",

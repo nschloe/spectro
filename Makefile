@@ -7,7 +7,7 @@ upload:
 	# Make sure we're on the master branch
 	@if [ "$(shell git rev-parse --abbrev-ref HEAD)" != "master" ]; then exit 1; fi
 	rm -f dist/*
-	python3 -m pep517.build --source --binary .
+	python3 -m build --sdist --wheel .
 	twine upload dist/*
 
 tag:
