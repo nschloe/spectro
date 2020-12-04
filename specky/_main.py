@@ -86,7 +86,7 @@ def check(path, **kwargs):
     return
 
 
-def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
+def _check_file(filename, window_length_s=0.05, channel=0):
     track = AudioSegment.from_file(filename)
 
     assert track.channels is not None
