@@ -3,13 +3,14 @@
   <p align="center">Delicious audio file spectrograms.</p>
 </p>
 
+[![PyPi Version](https://img.shields.io/pypi/v/specky.svg?style=flat-square)](https://pypi.org/project/specky)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/specky.svg?style=flat-square)](https://pypi.org/pypi/specky/)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/specky.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/specky)
+[![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
+
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/specky/ci?style=flat-square)](https://github.com/nschloe/specky/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/specky.svg?style=flat-square)](https://codecov.io/gh/nschloe/specky)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/specky.svg?style=flat-square)](https://pypi.org/pypi/specky/)
-[![PyPi Version](https://img.shields.io/pypi/v/specky.svg?style=flat-square)](https://pypi.org/project/specky)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/specky.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/specky)
-[![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
 
 specky is a collection of easy-to-use Python and command-line tools for analyzing audio
 files. Install from [PyPi](https://pypi.org/project/specky/) with
@@ -24,9 +25,9 @@ specky-check {dirname or filename.mp3}  # checks if the audio file is worse than
 See `-h` for their respective command-line arguments.
 
 The quality of MP3 files is typically determined by their bitrate. For audio files, *128
-kbps* (kilobit per second)  is considered low quality, *320 kbps* is considered high
-quality. It is of course possible to re-encode a low-quality MP3 with a higher bitrate or even a
-WAV file. specky can help singling out those foul eggs.
+kbps* (kilobit per second) is considered low quality, *320 kbps* is considered high
+quality. It is of course possible to re-encode a low-quality MP3 with a higher bitrate
+or even a WAV file. specky can help singling out those foul eggs.
 
 Here is the `specky-show` output of a [sample
 file](https://nschloe.github.io/specky/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first

@@ -1,5 +1,4 @@
-import glob
-import os
+import pathlib
 
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
@@ -20,6 +19,7 @@ def show(
 ):
     track = AudioSegment.from_file(filename)
 
+    assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
     if channel is None:
@@ -55,7 +55,10 @@ def show(
 
         plt.subplot(1, len(channels), i + 1)
         plt.pcolormesh(
-            t, f, Sxx, norm=colors.LogNorm(vmin=min_freq, vmax=Sxx.max()),
+            t,
+            f,
+            Sxx,
+            norm=colors.LogNorm(vmin=min_freq, vmax=Sxx.max()),
         )
         plt.title(f"Channel {k + 1}")
         if k == 0:
@@ -71,19 +74,22 @@ def show(
 
 
 def check(path, **kwargs):
-    if os.path.isfile(path):
+    path = pathlib.Path(path)
+    if path.is_file():
         _check_file(path, **kwargs)
         return
 
-    assert os.path.isdir(path)
-    for filename in glob.glob(path + "/**/*.mp3", recursive=True):
-        _check_file(filename, **kwargs)
+    assert path.is_dir()
+    for p in path.glob("**/*"):
+        if p.suffix in [".mp3", ".wav", ".flac"]:
+            _check_file(p, **kwargs)
     return
 
 
-def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
+def _check_file(filename, window_length_s=0.05, channel=0):
     track = AudioSegment.from_file(filename)
 
+    assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
     if window_length_s is None:
@@ -92,7 +98,7 @@ def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
         nperseg = int(round(window_length_s * track.frame_rate))
 
     # Use the first channel by default
-    f, t, Sxx = signal.spectrogram(
+    f, _, Sxx = signal.spectrogram(
         out[:, channel],
         fs=track.frame_rate,
         scaling="spectrum",
@@ -112,16 +118,16 @@ def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
 
     # What do we expect?
     # https://stackoverflow.com/a/287944/353337
-    ext = os.path.splitext(filename)[-1].lower()
-    if ext == ".wav":
+    filename = pathlib.Path(filename)
+    if filename.suffix in [".wav", ".flac"]:
         if f[k] > 19000:
             print(f"{Fore.GREEN}{filename} seems good.{Style.RESET_ALL}")
         else:
             print(
                 f"{Fore.RED}{filename} is WAV, but has max frequency "
-                f"about {f[k]:.0f} Hz. Check with speck-show.{Style.RESET_ALL}"
+                f"about {f[k]:.0f} Hz. Check with specky-show.{Style.RESET_ALL}"
             )
-    elif ext == ".mp3":
+    elif filename.suffix == ".mp3":
         mp3_file = MP3(filename)
         bitrate = int(mp3_file.info.bitrate / 1000)
         bitrate_to_min_max_freq = {
