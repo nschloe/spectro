@@ -3,13 +3,14 @@
   <p align="center">Delicious audio file spectrograms.</p>
 </p>
 
+[![PyPi Version](https://img.shields.io/pypi/v/specky.svg?style=flat-square)](https://pypi.org/project/specky)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/specky.svg?style=flat-square)](https://pypi.org/pypi/specky/)
+[![GitHub stars](https://img.shields.io/github/stars/nschloe/specky.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/specky)
+[![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
+
 [![gh-actions](https://img.shields.io/github/workflow/status/nschloe/specky/ci?style=flat-square)](https://github.com/nschloe/specky/actions?query=workflow%3Aci)
 [![codecov](https://img.shields.io/codecov/c/github/nschloe/specky.svg?style=flat-square)](https://codecov.io/gh/nschloe/specky)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/specky.svg?style=flat-square)](https://pypi.org/pypi/specky/)
-[![PyPi Version](https://img.shields.io/pypi/v/specky.svg?style=flat-square)](https://pypi.org/project/specky)
-[![GitHub stars](https://img.shields.io/github/stars/nschloe/specky.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/nschloe/specky)
-[![PyPi downloads](https://img.shields.io/pypi/dm/specky.svg?style=flat-square)](https://pypistats.org/packages/specky)
 
 specky is a collection of easy-to-use Python and command-line tools for analyzing audio
 files. Install from [PyPi](https://pypi.org/project/specky/) with
