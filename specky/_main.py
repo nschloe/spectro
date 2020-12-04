@@ -81,7 +81,7 @@ def check(path, **kwargs):
 
     assert path.is_dir()
     for p in path.glob("**/*"):
-        if p.suffix in [".mp3", ".wav"]:
+        if p.suffix in [".mp3", ".wav", ".flac"]:
             _check_file(p, **kwargs)
     return
 
@@ -119,7 +119,7 @@ def _check_file(filename, min_freq=1.0e-2, window_length_s=0.05, channel=0):
     # What do we expect?
     # https://stackoverflow.com/a/287944/353337
     filename = pathlib.Path(filename)
-    if filename.suffix == ".wav":
+    if filename.suffix in [".wav", ".flac"]:
         if f[k] > 19000:
             print(f"{Fore.GREEN}{filename} seems good.{Style.RESET_ALL}")
         else:
