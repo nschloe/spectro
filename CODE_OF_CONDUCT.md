@@ -1,4 +1,4 @@
-# specky Code of Conduct
+# spectro Code of Conduct
 
 ## Our Pledge
 
