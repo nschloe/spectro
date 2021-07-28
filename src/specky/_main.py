@@ -1,4 +1,5 @@
 import pathlib
+from typing import Optional
 
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
@@ -11,10 +12,10 @@ from scipy import signal
 
 def show(
     filename,
-    min_freq=1.0e-2,
-    num_windows=None,
-    num_frequencies=None,
-    channel=None,
+    min_freq: float = 1.0e-2,
+    num_windows: Optional[int] = None,
+    num_frequencies: Optional[int] = None,
+    channel: Optional[int] = None,
     outfile=None,
 ):
     track = AudioSegment.from_file(filename)
@@ -22,10 +23,7 @@ def show(
     assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
-    if channel is None:
-        channels = range(out.shape[1])
-    else:
-        channels = [channel - 1]
+    channels = range(out.shape[1]) if channel is None else [channel - 1]
 
     if num_windows is None:
         nperseg = None
@@ -83,7 +81,6 @@ def check(path, **kwargs):
     for p in path.glob("**/*"):
         if p.suffix in [".mp3", ".wav", ".flac"]:
             _check_file(p, **kwargs)
-    return
 
 
 def _check_file(filename, window_length_s=0.05, channel=0):
