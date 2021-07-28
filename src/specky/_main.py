@@ -1,20 +1,21 @@
 import pathlib
+from typing import Optional
 
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
 import numpy
-from colorama import Fore, Style
 from mutagen.mp3 import MP3
 from pydub import AudioSegment
+from rich.console import Console
 from scipy import signal
 
 
 def show(
     filename,
-    min_freq=1.0e-2,
-    num_windows=None,
-    num_frequencies=None,
-    channel=None,
+    min_freq: float = 1.0e-2,
+    num_windows: Optional[int] = None,
+    num_frequencies: Optional[int] = None,
+    channel: Optional[int] = None,
     outfile=None,
 ):
     track = AudioSegment.from_file(filename)
@@ -22,10 +23,7 @@ def show(
     assert track.channels is not None
     out = numpy.array(track.get_array_of_samples()).reshape(-1, track.channels)
 
-    if channel is None:
-        channels = range(out.shape[1])
-    else:
-        channels = [channel - 1]
+    channels = range(out.shape[1]) if channel is None else [channel - 1]
 
     if num_windows is None:
         nperseg = None
@@ -59,6 +57,7 @@ def show(
             f,
             Sxx,
             norm=colors.LogNorm(vmin=min_freq, vmax=Sxx.max()),
+            shading="auto",
         )
         plt.title(f"Channel {k + 1}")
         if k == 0:
@@ -83,7 +82,6 @@ def check(path, **kwargs):
     for p in path.glob("**/*"):
         if p.suffix in [".mp3", ".wav", ".flac"]:
             _check_file(p, **kwargs)
-    return
 
 
 def _check_file(filename, window_length_s=0.05, channel=0):
@@ -116,16 +114,18 @@ def _check_file(filename, window_length_s=0.05, channel=0):
     count = numpy.sum(log_Sxx > avg_log_Sxx, axis=1)
     k = numpy.where(count > log_Sxx.shape[1] / 8)[0][-1]
 
+    console = Console()
+
     # What do we expect?
     # https://stackoverflow.com/a/287944/353337
     filename = pathlib.Path(filename)
     if filename.suffix in [".wav", ".flac"]:
         if f[k] > 19000:
-            print(f"{Fore.GREEN}{filename} seems good.{Style.RESET_ALL}")
+            console.print(f"[green]{filename} seems good.")
         else:
-            print(
-                f"{Fore.RED}{filename} is WAV, but has max frequency "
-                f"about {f[k]:.0f} Hz. Check with specky-show.{Style.RESET_ALL}"
+            console.print(
+                f"[red]{filename} is WAV, but has max frequency "
+                f"about {f[k]:.0f} Hz. Check with specky show."
             )
     elif filename.suffix == ".mp3":
         mp3_file = MP3(filename)
@@ -145,14 +145,12 @@ def _check_file(filename, window_length_s=0.05, channel=0):
             expected_max_freq = val
 
         if f[k] > expected_max_freq:
-            print(
-                f"{Fore.GREEN}{filename} seems good [{bitrate} kbps].{Style.RESET_ALL}"
-            )
+            console.print(f"[green]{filename} seems good [{bitrate} kbps].")
         else:
-            print(
-                f"{Fore.RED}{filename} is MP3 [{bitrate} kbps], but has max frequency "
-                f"about {f[k]:.0f} Hz. Check with speck-show.{Style.RESET_ALL}"
+            console.print(
+                f"[red]{filename} is MP3 [{bitrate} kbps], but has max frequency "
+                f"about {f[k]:.0f} Hz. Check with speck-show."
             )
 
     else:
-        print(f"{Style.DIM}Don't know what to expect for {filename}.{Style.RESET_ALL}")
+        console.print(f"[italic]Don't know what to expect for {filename}.")
