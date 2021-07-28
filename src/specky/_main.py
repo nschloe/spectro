@@ -57,6 +57,7 @@ def show(
             f,
             Sxx,
             norm=colors.LogNorm(vmin=min_freq, vmax=Sxx.max()),
+            shading="auto",
         )
         plt.title(f"Channel {k + 1}")
         if k == 0:
