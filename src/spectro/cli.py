@@ -75,11 +75,11 @@ def main(argv=None):
 
 
 def _get_version_text():
-    __version__ = metadata.version("specky")
+    __version__ = metadata.version("spectro")
     python_version = f"{version_info.major}.{version_info.minor}.{version_info.micro}"
     return "\n".join(
         [
-            f"specky {__version__} [Python {python_version}]",
+            f"spectro {__version__} [Python {python_version}]",
             "Copyright (c) 2020-2021 Nico Schlömer",
         ]
     )

@@ -125,7 +125,7 @@ def _check_file(filename, window_length_s=0.05, channel=0):
         else:
             console.print(
                 f"[red]{filename} is WAV, but has max frequency "
-                f"about {f[k]:.0f} Hz. Check with specky show."
+                f"about {f[k]:.0f} Hz. Check with spectro show."
             )
     elif filename.suffix == ".mp3":
         mp3_file = MP3(filename)
