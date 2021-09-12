@@ -1,2 +1,4 @@
 .tox/
 src/*.egg-info/
+build/
+dist/
