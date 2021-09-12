@@ -19,8 +19,8 @@ pip install spectro
 ```
 and use with
 ```bash
-spectro-show filename.mp3                # shows the wave spectrum of the audio file
-spectro-check {dirname or filename.mp3}  # checks if the audio file is worse than it pretends to be
+spectro show filename.mp3                # shows the wave spectrum of the audio file
+spectro check {dirname or filename.mp3}  # checks if the audio file is worse than it pretends to be
 ```
 See `-h` for their respective command-line arguments.
 
@@ -29,7 +29,7 @@ kbps* (kilobit per second) is considered low quality, *320 kbps* is considered h
 quality. It is of course possible to re-encode a low-quality MP3 with a higher bitrate
 or even a WAV file. spectro can help singling out those foul eggs.
 
-Here is the `spectro-show` output of a [sample
+Here is the `spectro show` output of a [sample
 file](https://nschloe.github.io/spectro/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
 channel shown):
 
