@@ -11,12 +11,12 @@ from scipy import signal
 
 
 def show(
-    filename,
+    filename: str,
     min_freq: float = 1.0e-2,
     num_windows: Optional[int] = None,
     num_frequencies: Optional[int] = None,
     channel: Optional[int] = None,
-    outfile=None,
+    outfile: Optional[str] = None,
 ):
     track = AudioSegment.from_file(filename)
 
@@ -84,7 +84,7 @@ def check(path, **kwargs):
             _check_file(p, **kwargs)
 
 
-def _check_file(filename, window_length_s=0.05, channel=0):
+def _check_file(filename, window_length_s: float = 0.05, channel: int = 0):
     track = AudioSegment.from_file(filename)
 
     assert track.channels is not None
