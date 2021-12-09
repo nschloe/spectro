@@ -1,5 +1,6 @@
-import pathlib
-from typing import Optional
+from __future__ import annotations
+
+from pathlib import Path
 
 import matplotlib.colors as colors
 import matplotlib.pyplot as plt
@@ -11,13 +12,13 @@ from scipy import signal
 
 
 def show(
-    filename: str,
+    filename: str | Path,
     min_freq: float = 1.0e-2,
-    num_windows: Optional[int] = None,
-    num_frequencies: Optional[int] = None,
-    channel: Optional[int] = None,
-    outfile: Optional[str] = None,
-):
+    num_windows: int | None = None,
+    num_frequencies: int | None = None,
+    channel: int | None = None,
+    outfile: str | None = None,
+) -> None:
     track = AudioSegment.from_file(filename)
 
     assert track.channels is not None
@@ -72,8 +73,8 @@ def show(
         plt.savefig(outfile, transparent=True, bbox_inches="tight")
 
 
-def check(path, **kwargs):
-    path = pathlib.Path(path)
+def check(path, **kwargs) -> None:
+    path = Path(path)
     if path.is_file():
         _check_file(path, **kwargs)
         return
@@ -84,7 +85,7 @@ def check(path, **kwargs):
             _check_file(p, **kwargs)
 
 
-def _check_file(filename, window_length_s: float = 0.05, channel: int = 0):
+def _check_file(filename, window_length_s: float = 0.05, channel: int = 0) -> None:
     track = AudioSegment.from_file(filename)
 
     assert track.channels is not None
@@ -118,7 +119,7 @@ def _check_file(filename, window_length_s: float = 0.05, channel: int = 0):
 
     # What do we expect?
     # https://stackoverflow.com/a/287944/353337
-    filename = pathlib.Path(filename)
+    filename = Path(filename)
     if filename.suffix in [".wav", ".flac"]:
         if f[k] > 19000:
             console.print(f"[green]{filename} seems good.")

@@ -14,18 +14,22 @@
 
 spectro is a collection of easy-to-use Python and command-line tools for analyzing audio
 files. Install from [PyPi](https://pypi.org/project/spectro/) with
+
 ```
 pip install spectro
 ```
+
 and use with
+
 ```bash
 spectro show filename.mp3                # shows the wave spectrum of the audio file
 spectro check {dirname or filename.mp3}  # checks if the audio file is worse than it pretends to be
 ```
+
 See `-h` for their respective command-line arguments.
 
-The quality of MP3 files is typically determined by their bitrate. For audio files, *128
-kbps* (kilobit per second) is considered low quality, *320 kbps* is considered high
+The quality of MP3 files is typically determined by their bitrate. For audio files, _128
+kbps_ (kilobit per second) is considered low quality, _320 kbps_ is considered high
 quality. It is of course possible to re-encode a low-quality MP3 with a higher bitrate
 or even a WAV file. spectro can help singling out those foul eggs.
 
@@ -33,10 +37,10 @@ Here is the `spectro show` output of a [sample
 file](https://nschloe.github.io/spectro/Yamaha-V50-Ride-Pattern-120bpm.wav) (only first
 channel shown):
 
-<img src="https://nschloe.github.io/spectro/wav.png" width="100%"> | <img src="https://nschloe.github.io/spectro/320.png" width="100%"> | <img src="https://nschloe.github.io/spectro/256.png" width="100%">
-:-------------------:|:------------------:|:--------------:|
-Full-quality WAV     |  320 kbps MP3      |  256 kbps MP3  |
-<img src="https://nschloe.github.io/spectro/192.png" width="100%"> | <img src="https://nschloe.github.io/spectro/128.png" width="100%"> | <img src="https://nschloe.github.io/spectro/96.png" width="100%">
-|  192 kbps MP3      |  128 kbps MP3  |  96 kbps MP3  |
-<img src="https://nschloe.github.io/spectro/64.png" width="100%"> | <img src="https://nschloe.github.io/spectro/32.png" width="100%"> | <img src="https://nschloe.github.io/spectro/16.png" width="100%">
-|  64 kbps MP3      |  32 kbps MP3  |  16 kbps MP3  |
+| <img src="https://nschloe.github.io/spectro/wav.png" width="100%"> | <img src="https://nschloe.github.io/spectro/320.png" width="100%"> | <img src="https://nschloe.github.io/spectro/256.png" width="100%"> |
+| :----------------------------------------------------------------: | :----------------------------------------------------------------: | :----------------------------------------------------------------: |
+|                          Full-quality WAV                          |                            320 kbps MP3                            |                            256 kbps MP3                            |
+| <img src="https://nschloe.github.io/spectro/192.png" width="100%"> | <img src="https://nschloe.github.io/spectro/128.png" width="100%"> | <img src="https://nschloe.github.io/spectro/96.png" width="100%">  |
+|                            192 kbps MP3                            |                            128 kbps MP3                            |                            96 kbps MP3                             |
+| <img src="https://nschloe.github.io/spectro/64.png" width="100%">  | <img src="https://nschloe.github.io/spectro/32.png" width="100%">  | <img src="https://nschloe.github.io/spectro/16.png" width="100%">  |
+|                            64 kbps MP3                             |                            32 kbps MP3                             |                            16 kbps MP3                             |
